@@ -23,6 +23,6 @@ export class PricesService {
         // Really, this would have some error handling and back-off logic, in case there is a problem with the provider
         switchMap(() => this.getLatestPrices()),
         // Share this observable and replay it, so we don't hit the provider for each of our own subscribers
-        shareReplay()
+        shareReplay({ refCount: true })
     );
 }
