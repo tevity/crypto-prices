@@ -1,7 +1,7 @@
 import { PricesProvider } from "../prices-provider.interface";
 import { CryptoPrice } from "../crypto-price.model";
 
-export class CoinApiPricesProvider extends PricesProvider {
+export class CryptoApisPricesProvider extends PricesProvider {
     getPrices(): CryptoPrice[] {
         return [
             { name: 'first', price: 1, date: new Date() },
@@ -9,5 +9,4 @@ export class CoinApiPricesProvider extends PricesProvider {
             { name: 'third', price: 100.5, date: new Date() },
         ]
     }
-
 }
