@@ -1,5 +1,6 @@
 import { PricesService } from "./prices.service";
 import { PricesProvider } from "./prices-provider.interface";
+import { of } from "rxjs";
 
 describe('PricesService', () => {
     function createTarget({
@@ -9,16 +10,17 @@ describe('PricesService', () => {
     }
 
     describe('getLatestPrices', () => {
-        it('should return result from injected PricesProvider', () => {
+        it('should return result from injected PricesProvider', done => {
             const prices = [{}, {}];
             const pricesProvider = {
-                getPrices() { return prices; }
+                getPrices() { return of(prices); }
             };
             const target = createTarget({ pricesProvider });
 
-            const result = target.getLatestPrices();
-
-            expect(result).toBe(prices);
+            target.getLatestPrices().subscribe(result => {
+                expect(result).toBe(prices);
+                done();
+            });
         });
     });
 });
