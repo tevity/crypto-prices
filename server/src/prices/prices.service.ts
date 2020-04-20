@@ -13,7 +13,6 @@ export class PricesService {
         return this.pricesProvider.getPrices();
     }
 
-
     watchPrices(): Observable<CryptoPrice[]> {
         return this.pricesPoller;
     }
