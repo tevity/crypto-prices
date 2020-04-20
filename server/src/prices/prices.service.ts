@@ -6,6 +6,8 @@ import { PricesProvider } from "./prices-provider.interface";
 import { PricesConfig } from "./prices.config";
 
 @Injectable()
+// All of the methods in here currently just return a CryptoPrice object, but this could (should)
+// be mapped to a DTO/ViewModel that would be passed back to the client
 export class PricesService {
     constructor(private pricesProvider: PricesProvider, private config: PricesConfig) { }
 
