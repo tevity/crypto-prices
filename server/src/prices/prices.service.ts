@@ -6,7 +6,7 @@ import { PricesProvider } from "./prices-provider.interface";
 export class PricesService {
     constructor(private pricesProvider: PricesProvider) { }
 
-    listPrices(): CryptoPrice[] {
+    getLatestPrices(): CryptoPrice[] {
         return this.pricesProvider.getPrices();
     }
 }
