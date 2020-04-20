@@ -103,7 +103,7 @@ describe('PricesService', () => {
 
                 const firstSubscriber = target.watchPrices().subscribe();
                 const secondSubscriber = target.watchPrices().subscribe();
-                // Run for the first subscriber a couple of times, so we've polled at 0 and 10ms
+                // Run for a couple of times, so we've polled at 0 and 10ms
                 jest.advanceTimersByTime(11);
 
                 firstSubscriber.unsubscribe();
