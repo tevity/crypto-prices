@@ -1,4 +1,4 @@
-import { WebSocketGateway, SubscribeMessage } from '@nestjs/websockets';
+import { WebSocketGateway, SubscribeMessage, WsResponse } from '@nestjs/websockets';
 import { PricesService } from "./prices.service";
 import { Observable } from "rxjs";
 import { CryptoPrice } from "./crypto-price.model";
@@ -9,7 +9,7 @@ export class PricesGateway {
     constructor(private pricesService: PricesService) { }
 
     @SubscribeMessage('prices')
-    getPrices(): Observable<{ event: 'prices', data: CryptoPrice[] }> {
+    streamPrices(): Observable<WsResponse<CryptoPrice[]>> {
         return this.pricesService.watchPrices().pipe(
             map(prices => ({
                 event: 'prices',
