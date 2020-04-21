@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule, httpInterceptorProviders } from '@core';
 import { PricesModule } from 'src/prices';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { PricesModule } from 'src/prices';
     HttpClientModule,
     AppRoutingModule,
     CoreModule,
-    PricesModule
+    PricesModule,
+    BrowserAnimationsModule
   ],
   providers: [
     httpInterceptorProviders
