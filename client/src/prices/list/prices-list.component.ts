@@ -14,6 +14,6 @@ export class PricesList implements OnInit {
     constructor(private pricesService: PricesService) { }
 
     ngOnInit() {
-        this.prices = this.pricesService.getLatestPrices();
+        this.prices = this.pricesService.streamPrices();
     }
 }
