@@ -12,7 +12,7 @@ describe('PricesService', () => {
     describe('getLatestPrices', () => {
         it('should get the prices from the prices endpoint', done => {
             const http = {
-                get: jasmine.createSpy('http.get').and.returnValue(EMPTY)
+                get: jasmine.createSpy('http.get').and.returnValue(of([]))
             };
             const target = createTarget({ http });
 
