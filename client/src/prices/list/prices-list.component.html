@@ -1,4 +1,4 @@
-<mat-table [dataSource]="prices$">
+<mat-table [dataSource]="prices$" [trackBy]="getPriceId">
     <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
         <mat-cell *matCellDef="let price"> {{price.name}} </mat-cell>
