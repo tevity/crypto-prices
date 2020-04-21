@@ -1,0 +1,1 @@
+export { CoreModule, httpInterceptorProviders } from './core.module';
