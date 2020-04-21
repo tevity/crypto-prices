@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 import { WebSocketService } from '@core';
 import { CryptoPrice } from './crypto-price.model';
 
@@ -13,12 +13,18 @@ export class PricesService {
 
     getLatestPrices(): Observable<CryptoPrice[]> {
         return this.http.get<CryptoPrice[]>('prices').pipe(
-            // convert string date into JS date
-            tap(prices => prices.forEach(price => price.date = new Date(price.date)))
+            map(prices => this.mapDate(prices))
         );
     }
 
     streamPrices(): Observable<CryptoPrice[]> {
-        return this.webSocket.listen<CryptoPrice[]>('prices');
+        return this.webSocket.listen<CryptoPrice[]>('prices').pipe(
+            map(prices => this.mapDate(prices))
+        );
+    }
+
+    // Converts string date into JS date
+    private mapDate(prices: CryptoPrice[]): CryptoPrice[] {
+        return prices.map(price => ({ ...price, ...{ date: new Date(price.date) } }));
     }
 }
