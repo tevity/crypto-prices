@@ -16,4 +16,8 @@ export class PricesList implements OnInit {
     ngOnInit() {
         this.prices = this.pricesService.streamPrices();
     }
+
+    getPriceId(index: number, price: CryptoPrice) {
+        return price.name;
+    }
 }

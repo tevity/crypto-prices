@@ -1,5 +1,5 @@
 <ul>
-    <li *ngFor="let price of prices | async">
+    <li *ngFor="let price of prices | async; trackBy: getPriceId">
         {{price | json}}
     </li>
 </ul>
