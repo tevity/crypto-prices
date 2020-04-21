@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 import { WebSocketService } from '@core';
-import { PricesService } from "./prices.service";
+import { PricesService } from './prices.service';
 
 describe('PricesService', () => {
     function createTarget({

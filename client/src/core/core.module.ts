@@ -14,4 +14,4 @@ export class CoreModule {
 
 export const httpInterceptorProviders = [
     { provide: HTTP_INTERCEPTORS, useClass: HttpBaseAddressInterceptor, multi: true }
-]
+];

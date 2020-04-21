@@ -1,4 +1,4 @@
-import { HttpBaseAddressInterceptor } from "./http-base-address.interceptor";
+import { HttpBaseAddressInterceptor } from './http-base-address.interceptor';
 import { HttpRequest } from '@angular/common/http';
 import { of } from 'rxjs';
 import { EnvironmentService } from '../environment.service';
