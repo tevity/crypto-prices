@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule, httpInterceptorProviders } from '@core';
+import { PricesModule } from 'src/prices';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -10,8 +12,10 @@ import { CoreModule, httpInterceptorProviders } from '@core';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
-    CoreModule
+    CoreModule,
+    PricesModule
   ],
   providers: [
     httpInterceptorProviders
