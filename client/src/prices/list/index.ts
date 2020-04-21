@@ -1,1 +1,1 @@
-export { PricesList } from './prices-list.component';
+export { PricesListComponent } from './prices-list.component';

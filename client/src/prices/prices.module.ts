@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { PricesList } from './list';
+import { PricesListComponent } from './list';
 import { MaterialModule } from 'src/app/material.module';
 
 @NgModule({
@@ -11,12 +11,12 @@ import { MaterialModule } from 'src/app/material.module';
         MaterialModule
     ],
     declarations: [
-        PricesList
+        PricesListComponent
     ],
     exports: [
         CommonModule,
         FormsModule,
-        PricesList
+        PricesListComponent
     ]
 })
 export class PricesModule { }
