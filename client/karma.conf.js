@@ -25,8 +25,14 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadlessRootCheck'],
     singleRun: false,
-    restartOnFileChange: true
+    restartOnFileChange: true,
+    customLaunchers: {
+      ChromeHeadlessRootCheck: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    }
   });
 };
