@@ -1,6 +1,6 @@
-import { PricesService } from "./prices.service";
 import { HttpClient } from '@angular/common/http';
-import { of, EMPTY } from 'rxjs';
+import { of } from 'rxjs';
+import { PricesService } from "./prices.service";
 
 describe('PricesService', () => {
     function createTarget({
