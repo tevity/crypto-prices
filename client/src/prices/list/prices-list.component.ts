@@ -9,15 +9,17 @@ import { CryptoPrice } from '../crypto-price.model';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PricesList implements OnInit {
-    public prices: Observable<CryptoPrice[]>;
+    public prices$: Observable<CryptoPrice[]>;
 
     constructor(private pricesService: PricesService) { }
 
     ngOnInit() {
-        this.prices = this.pricesService.streamPrices();
+        this.prices$ = this.pricesService.streamPrices();
     }
 
     getPriceId(index: number, price: CryptoPrice) {
         return price.name;
     }
+
+    readonly displayedColumns = ['name', 'price', 'date'];
 }

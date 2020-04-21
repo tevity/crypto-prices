@@ -1,5 +1,19 @@
-<ul>
-    <li *ngFor="let price of prices | async; trackBy: getPriceId">
-        {{price | json}}
-    </li>
-</ul>
+<mat-table [dataSource]="prices$">
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let price"> {{price.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef>Price </mat-header-cell>
+        <mat-cell *matCellDef="let price"> {{price.price | currency:'USD'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef>Last update</mat-header-cell>
+        <mat-cell *matCellDef="let price"> {{price.date | date:'dd/MM/yyyy HH:mm:ss'}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let price; columns: displayedColumns;"></mat-row>
+</mat-table>
