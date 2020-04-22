@@ -2,9 +2,9 @@ FROM node:12.16-alpine AS BUILD
 
 LABEL maintainer="https://github.com/tevity"
 
-WORKDIR /src
+WORKDIR /usr/local/src
 
-COPY package*.json /src/
+COPY package*.json ./
 RUN npm ci
 COPY . .
 
@@ -16,9 +16,10 @@ RUN npm run build
 
 FROM node:12.16-alpine AS PRODUCTION
 ENV NODE_ENV=production
+WORKDIR /usr/local/crypto-prices
 
 COPY package*.json ./
 RUN npm ci
-COPY --from=BUILD /src/dist ./dist
+COPY --from=BUILD /usr/local/src/dist ./dist
 
 CMD ["npm", "run", "start:prod"]
