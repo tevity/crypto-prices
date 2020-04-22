@@ -1,24 +1,23 @@
-FROM alpine:3.11 AS BUILD
+FROM node:12.16-alpine AS BUILD
 
 LABEL maintainer="https://github.com/tevity"
 
-WORKDIR /src
+WORKDIR /usr/local/src
 
-RUN apk add npm
+# Needed to run karma tests
 RUN apk add chromium
-RUN npm i -g @angular/cli
 ENV CHROME_BIN=chromium-browser
 
-COPY package*.json /src/
-
+COPY package*.json ./
 RUN npm ci
+COPY . .
 
-COPY . /src
+RUN npm run lint
+RUN npm run test:ci
+RUN npm run build:prod
 
-RUN ng lint
-RUN ng test --watch=false
-RUN ng build --aot --buildOptimizer --prod
 
-FROM nginx:1.17
-COPY --from=BUILD /src/dist /usr/share/nginx/html
+
+FROM nginx:1.17 AS PRODUCTION
+COPY --from=BUILD /usr/local/src/dist /usr/share/nginx/html
 COPY /nginx-custom.conf /etc/nginx/nginx.conf
