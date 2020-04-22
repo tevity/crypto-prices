@@ -4,16 +4,23 @@ LABEL maintainer="https://github.com/tevity"
 
 WORKDIR /usr/local/src
 
-# Needed to run karma tests
-RUN apk add chromium
-ENV CHROME_BIN=chromium-browser
-
 COPY package*.json ./
-RUN npm ci
+# node-gyp needs Python installed, so put it in for npm ci, then remove again to keep image small
+RUN apk --no-cache add --virtual native-deps \
+    g++ gcc libgcc libstdc++ linux-headers make python && \
+    npm ci && \
+    apk del native-deps
 COPY . .
 
 RUN npm run lint
-RUN npm run test:ci
+
+# karma needs a browser installed, so install chromium then remove again to keep image small
+ENV CHROME_BIN=chromium-browser
+RUN apk --no-cache add --virtual native-deps \
+    chromium && \
+    npm run test:ci && \
+    apk del native-deps
+
 RUN npm run build:prod
 
 
