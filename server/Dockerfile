@@ -5,7 +5,11 @@ LABEL maintainer="https://github.com/tevity"
 WORKDIR /usr/local/src
 
 COPY package*.json ./
-RUN npm ci
+# node-gyp needs Python installed, so put it in for npm ci, then remove again to keep image small
+RUN apk --no-cache add --virtual native-deps \
+    g++ gcc libgcc libstdc++ linux-headers make python && \
+    npm ci && \
+    apk del native-deps
 COPY . .
 
 RUN npm run lint:ci
